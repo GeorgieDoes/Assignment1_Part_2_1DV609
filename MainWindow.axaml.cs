@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -10,6 +8,7 @@ namespace AvaloniaApp;
 public partial class MainWindow : Window
 {
     public ObservableCollection<string> Notes { get; } = new ObservableCollection<string>();
+    private TextBox? _noteTextBox;
 
     public MainWindow()
     {
@@ -20,15 +19,19 @@ public partial class MainWindow : Window
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);
+        _noteTextBox = this.FindControl<TextBox>("NoteTextBox");
     }
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
-        var text = NoteTextBox.Text;
-        if (!string.IsNullOrWhiteSpace(text))
+        if (_noteTextBox != null)
         {
-            Notes.Add(text);
-            NoteTextBox.Text = string.Empty;
+            var text = _noteTextBox.Text;
+            if(!string.IsNullOrWhiteSpace(text))
+            {
+                Notes.Add(text);
+                _noteTextBox.Text = string.Empty;
+            }
         }
     }
 }
