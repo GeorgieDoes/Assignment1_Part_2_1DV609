@@ -2,19 +2,36 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:local="clr-namespace:AvaloniaApp"
+        mc:Ignorable="d"
+        d:DesignWidth="800"
+        d:DesignHeight="450"
         x:Class="AvaloniaApp.MainWindow"
         Title="Avalonia Application">
     
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="Notes" 
-                   FontSize="24" 
-                     HorizontalAlignment="Left"
-                     TextAlignment="Left"
+        <TextBlock Text="Simple Notes App" 
+                   FontSize="28"
+                   HorizontalAlignment="Center" 
                    Margin="0,0,0,20"/>
-        <Button Content="Click Me!" 
+
+        <TextBox x:Name="NoteTextBox"
+                   Width="400"
+                   Height="100" 
+                   AcceptsReturn="True"
+                   TextWrapping="Wrap"
+                   Watermark="Write your note here"/>
+
+        <Button Content="Add Note" 
+                Width="100"
                 HorizontalAlignment="Center"
+                Margin="0,10,0,10"
                 Click="OnButtonClick"/>
+
+        <ListBox x:Name="NotesListBox"
+                 Width="400"
+                 Height="200"
+                 ItemsSource="{Binding Notes}"/>
     </StackPanel>
     
 </Window>
