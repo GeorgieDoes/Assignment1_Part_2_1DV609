@@ -7,6 +7,7 @@
         d:DesignWidth="800"
         d:DesignHeight="450"
         x:Class="AvaloniaApp.MainWindow"
+        x:DataType="local:MainWindow"
         Title="Avalonia Application">
     
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
