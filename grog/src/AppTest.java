@@ -7,4 +7,10 @@ public class AppTest {
         App app = new App();
         assertEquals("Hello, World!", app.input("Hello, world!"));
     }
+
+    @Test
+    public void inputTest2() {
+        App app = new App();
+        assertEquals("!", app.input("!"));
+    }
 }
