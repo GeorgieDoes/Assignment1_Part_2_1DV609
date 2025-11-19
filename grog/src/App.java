@@ -4,8 +4,4 @@ public class App {
 
         App app = new App();
     }
-
-    public String input(String input) {
-        return input;
-    }
 }

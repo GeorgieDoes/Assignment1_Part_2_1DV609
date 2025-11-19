@@ -1,16 +1,18 @@
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+
 import static org.junit.Assert.assertEquals;
 
 public class AppTest {
-    @Test
-    public void inputTest() {
-        App app = new App();
-        assertEquals("Hello, World!", app.input("Hello, World!"));
+    private App app;
+
+    @BeforeAll
+    private void setup() {
+        this.app = new App();
     }
 
     @Test
-    public void inputTest2() {
-        App app = new App();
-        assertEquals("!", app.input("!"));
+    public void TestForInitialInput() {
+        assertEquals(1, 2, app.input(1, 2));
     }
 }
