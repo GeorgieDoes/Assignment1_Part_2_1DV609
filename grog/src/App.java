@@ -6,6 +6,6 @@ public class App {
     }
 
     public String input(String input) {
-        return "Hello, World!";
+        return input;
     }
 }

@@ -5,7 +5,7 @@ public class AppTest {
     @Test
     public void inputTest() {
         App app = new App();
-        assertEquals("Hello, World!", app.input("Hello, world!"));
+        assertEquals("Hello, World!", app.input("Hello, World!"));
     }
 
     @Test
