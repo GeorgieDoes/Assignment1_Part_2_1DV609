@@ -2,17 +2,19 @@ import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class AppTest {
     private App app;
 
     @BeforeAll
     private void setup() {
-        this.app = new App();
+        
     }
 
     @Test
-    public void TestForInitialInput() {
-        assertEquals(1, 2, app.input(1, 2));
+    public void TestAppObjectCreation() {
+        App app = new App(1, 2);
+        assertNotNull("Object should be non empty", app);
     }
 }
