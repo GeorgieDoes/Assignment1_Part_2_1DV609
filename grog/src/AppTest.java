@@ -31,4 +31,13 @@ public class AppTest {
         assertEquals(400, app.PresentsValue(2, 200));
       
     }
+
+    @Test
+    public void TestInputMethodDifferentValues() {
+        App app = new App(2, 2);
+        assertEquals(800, app.PresentsValue(4, 200));
+    
+    }
+
+
 }
