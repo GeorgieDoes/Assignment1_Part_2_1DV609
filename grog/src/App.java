@@ -11,6 +11,10 @@ public class App {
       this.age = age;
       this.friends = friends;
     }
+    
+    public int PresentsValue(int numberOfPresents, int moneyPerPresent) {
+        return numberOfPresents * moneyPerPresent;
+    }
 
     public int getAge() {
         return age;

@@ -30,4 +30,5 @@ public class AppTest {
         App app = new App(1, 2);
         assertEquals(400, app.PresentsValue(2, 200));
       
+    }
 }
