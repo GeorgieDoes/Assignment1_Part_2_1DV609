@@ -24,4 +24,10 @@ public class AppTest {
         assertEquals(18, app.getAge());
         assertEquals(0, app.getFriends());
     }
+
+    @Test
+    public void TestInputMethod() {
+        App app = new App(1, 2);
+        assertEquals(400, app.PresentsValue(2, 200));
+      
 }
