@@ -7,7 +7,16 @@ public class App {
         System.out.println("Hello, World!");
     }
 
-    public App (int age, int friends) {
-        
+    public App(int age, int friends) {
+      this.age = age;
+      this.friends = friends;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getFriends() {
+        return friends;
     }
 }
