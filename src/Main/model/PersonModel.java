@@ -15,7 +15,12 @@ public class PersonModel {
     public int GetIncome() { return this._income; }
     public int GetAge() { return this._age; }
 
-    public PersonModel() {
-        
+    // Constructors \\
+    public PersonModel() { }    // <-- Default constructor
+
+    public PersonModel(String name, int income, int age) {
+        this._name = "Patrik";
+        this._income = 7000;
+        this._age = 48;
     }
 }
