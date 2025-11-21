@@ -19,8 +19,8 @@ public class PersonModel {
     public PersonModel() { }    // <-- Default constructor
 
     public PersonModel(String name, int income, int age) {
-        this._name = "Patrik";
-        this._income = 7000;
-        this._age = 48;
+        this._name = name;
+        this._income = income;
+        this._age = age;
     }
 }
