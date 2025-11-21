@@ -24,4 +24,10 @@ public class PersonModelTest {
         person.SetName("Alice");
         assertEquals("Alice", person.GetName());
     }
+
+    @Test
+    public void testPersonModelNewNameProperty() {
+        person.SetName("George");
+        assertEquals("George", person.GetName());
+    }
 }
