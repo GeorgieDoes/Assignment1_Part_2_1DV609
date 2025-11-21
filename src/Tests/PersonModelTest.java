@@ -35,6 +35,11 @@ public class PersonModelTest {
     @Test
     public void testPersonModelNewNameProperties() {
         person.SetName("George");
+        person.SetIncome(60000);
+        person.SetAge(40);
+
         assertEquals("George", person.GetName());
+        assertEquals(60000, person.GetIncome());
+        assertEquals(40, person.GetAge());
     }
 }
