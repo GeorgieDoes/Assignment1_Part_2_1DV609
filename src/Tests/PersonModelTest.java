@@ -33,11 +33,13 @@ public class PersonModelTest {
     }
 
     @Test
-    public void testPersonModelNewNameProperties() {
+    public void testPersonModelNewProperties() {
+        // Test setting new values
         person.SetName("George");
         person.SetIncome(60000);
         person.SetAge(40);
 
+        // Test getting new values
         assertEquals("George", person.GetName());
         assertEquals(60000, person.GetIncome());
         assertEquals(40, person.GetAge());
