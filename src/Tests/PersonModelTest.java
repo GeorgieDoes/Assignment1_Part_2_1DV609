@@ -20,13 +20,20 @@ public class PersonModelTest {
     }
 
     @Test
-    public void testPersonModelNameProperty() {
+    public void testPersonModelProperties() {
+        // Test setting
         person.SetName("Alice");
+        person.SetIncome(50000);
+        person.SetAge(30);
+
+        // Test getting
         assertEquals("Alice", person.GetName());
+        assertEquals(50000, person.GetIncome());
+        assertEquals(30, person.GetAge());
     }
 
     @Test
-    public void testPersonModelNewNameProperty() {
+    public void testPersonModelNewNameProperties() {
         person.SetName("George");
         assertEquals("George", person.GetName());
     }
