@@ -2,15 +2,14 @@
 Assignment 1 - Part 2 Pair student Assignment.
 
 ## Language of implementation:
- - C#.
+ - Java.
 
 ## Framework for unit testing:
- - xUnit.
+ - JUnit.
 
 ## Code covarage tool:
- - Coverlet (for integration and compatibility with xUnit and .NET cli).
+ - (To be specified).
 
 ## Project:
- - Simple note-taking application.
- - Built on Avalonia UI.
+ - Tax calculator
 
