@@ -13,5 +13,9 @@ public class PersonModel {
     // Getters \\
     public String GetName() { return this._name; }
     public int GetIncome() { return this._income; }
-    public int GetAge() { return _age; }
+    public int GetAge() { return this._age; }
+
+    public PersonModel() {
+        
+    }
 }

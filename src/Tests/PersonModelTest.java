@@ -30,10 +30,7 @@ public class PersonModelTest {
         assertEquals("Alice", person.GetName());
         assertEquals(50000, person.GetIncome());
         assertEquals(30, person.GetAge());
-    }
 
-    @Test
-    public void testPersonModelNewProperties() {
         // Test setting new values
         person.SetName("George");
         person.SetIncome(60000);
@@ -43,5 +40,13 @@ public class PersonModelTest {
         assertEquals("George", person.GetName());
         assertEquals(60000, person.GetIncome());
         assertEquals(40, person.GetAge());
+    }
+
+    @Test
+    public void TestConstructionSetting() {
+        PersonModel newPerson = new PersonModel("Patrik", 7000, 48);
+        assertEquals("Patrik", newPerson.GetName());
+        assertEquals(7000, newPerson.GetIncome());
+        assertEquals(48, newPerson.GetAge());
     }
 }
