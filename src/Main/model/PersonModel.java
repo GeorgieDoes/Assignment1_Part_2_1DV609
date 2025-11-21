@@ -6,14 +6,31 @@ public class PersonModel {
     private int _age;
 
     // Setters \\
-    public void SetName(String name) { this._name = name; }
-    public void SetIncome(int income) { this._income = income;}
-    public void SetAge(int age) { this._age = age; }
+    public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+        this._name = name;
+    }
+
+    public void setIncome(int income) {
+        if (income < 0 || income > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException("Invalid intager value for income");
+        }
+        this._income = income;
+    }
+
+    public void setAge(int age) {
+        if (age < 0) {
+            throw new IllegalArgumentException("Age cannot be negative");
+        }
+        this._age = age;
+    }
 
     // Getters \\
-    public String GetName() { return this._name; }
-    public int GetIncome() { return this._income; }
-    public int GetAge() { return this._age; }
+    public String getName() { return this._name; }
+    public int getIncome() { return this._income; }
+    public int getAge() { return this._age; }
 
     // Constructors \\
     public PersonModel() { }    // <-- Default constructor
