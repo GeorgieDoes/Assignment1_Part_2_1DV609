@@ -48,5 +48,10 @@ public class PersonModelTest {
         assertEquals("Patrik", newPerson.GetName());
         assertEquals(7000, newPerson.GetIncome());
         assertEquals(48, newPerson.GetAge());
+
+        PersonModel newPersonTwo = new PersonModel("Gustav", 14000, 27);
+        assertEquals("Gustav", newPersonTwo.GetName());
+        assertEquals(14000, newPersonTwo.GetIncome());
+        assertEquals(27, newPersonTwo.GetAge());
     }
 }
