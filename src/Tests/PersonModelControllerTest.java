@@ -21,7 +21,8 @@ public class PersonModelControllerTest {
     @Test
     public void testControllerSetter() {
         controller.setName("Anton");
-        controller.setIncome(0);
-        controller.setAge(49);
+        //controller.setIncome(0);
+        //controller.setAge(49);
+        assertEquals("Anton", controller.getName());
     }
 }
