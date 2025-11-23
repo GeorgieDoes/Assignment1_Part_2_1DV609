@@ -17,4 +17,11 @@ public class PersonModelControllerTest {
     public void testControllerCreation() {
         assertNotNull(controller);
     }
+
+    @Test
+    public void testControllerSetter() {
+        controller.setName("Anton");
+        controller.setIncome(0);
+        controller.setAge(49);
+    }
 }
