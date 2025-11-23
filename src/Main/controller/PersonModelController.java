@@ -5,9 +5,26 @@ public class PersonModelController {
     private PersonModel _model;
 
     // Setters \\
-    public void setName(String name) { this._model.setName(name); }
-    public void setIncome(int income) { this._model.setIncome(income); }
-    public void setAge(int age) { this._model.setAge(age); }
+    public void setName(String name) { 
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name can not be empty.");
+        }
+        this._model.setName(name); 
+    }
+
+    public void setIncome(int income) { 
+        if (income < 0 || income > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException("Invalid integer value for income.");
+        }
+        this._model.setIncome(income); 
+    }
+    
+    public void setAge(int age) { 
+        if (age < 0 || age > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException("Invalid integer value for age.");
+        }
+        this._model.setAge(age); 
+    }
 
     // Getters \\
     public String getName() { return this._model.getName(); }
