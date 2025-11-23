@@ -4,17 +4,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import Main.controller.PersonModelController;
+import Main.controller.TaxCalculator;
 
 public class TaxCalculatorTest {
-    private PersonModelController controller;
+    private TaxCalculator calc;
 
     @BeforeEach
     public void setUp() {
-        controller = new PersonModelController();
+        calc = new TaxCalculator();
     }
 
-    @Test void testObjectCreation() {
-        assertNotNull(controller);
+    @Test 
+    public void testObjectCreation() {
+        assertNotNull(calc);
+    }
+
+    @Test
+    public void testCalculateTaxes() {
+        calc.calculateTaxes();
     }
 }

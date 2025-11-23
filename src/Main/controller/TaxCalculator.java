@@ -1,6 +1,6 @@
 package Main.controller;
 
-import Main.model.PersonModel;
+import Main.controller.PersonModelController;
 
 public class TaxCalculator {
     
