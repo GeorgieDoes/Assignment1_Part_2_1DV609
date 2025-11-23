@@ -25,4 +25,12 @@ public class PersonModelControllerTest {
         //controller.setAge(49);
         assertEquals("Anton", controller.getName());
     }
+
+        @Test
+    public void testControllerSetterAlt() {
+        controller.setName("Oscar");
+        //controller.setIncome(0);
+        //controller.setAge(49);
+        assertEquals("Oscar", controller.getName());
+    }
 }
