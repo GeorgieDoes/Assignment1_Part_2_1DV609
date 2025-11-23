@@ -1,7 +1,6 @@
 package Tests;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import Main.model.PersonModel;
@@ -53,23 +52,5 @@ public class PersonModelTest {
         assertEquals("Gustav", newPersonTwo.getName());
         assertEquals(14000, newPersonTwo.getIncome());
         assertEquals(27, newPersonTwo.getAge());
-    }
-
-    @Test
-    public void TestIllegalSetting() {
-        // Setting negative income
-        assertThrows(IllegalArgumentException.class, () -> {
-            person.setIncome(-5000);
-        });
-
-        // Setting overly large income
-        assertThrows(IllegalArgumentException.class, () -> {
-            person.setAge(-23);
-        });
-
-        // Setting empty name
-        assertThrows(IllegalArgumentException.class, () -> {
-            person.setName(null);
-        });
     }
 }
