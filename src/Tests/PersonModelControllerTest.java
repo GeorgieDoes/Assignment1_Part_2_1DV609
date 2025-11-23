@@ -20,17 +20,31 @@ public class PersonModelControllerTest {
 
     @Test
     public void testControllerSetter() {
-        controller.setName("Anton");
-        //controller.setIncome(0);
-        //controller.setAge(49);
-        assertEquals("Anton", controller.getName());
+        String name = "Anton";
+        int income = 0;
+        int age = 49;
+
+        controller.setName(name);
+        controller.setIncome(income);
+        controller.setAge(age);
+
+        assertEquals(name, controller.getName());
+        assertEquals(income, controller.getIncome());
+        assertEquals(age, controller.getAge());
     }
 
-        @Test
+    @Test
     public void testControllerSetterAlt() {
-        controller.setName("Oscar");
-        //controller.setIncome(0);
-        //controller.setAge(49);
-        assertEquals("Oscar", controller.getName());
+        String name = "Oscar";
+        int income = 1;
+        int age = 1987;
+
+        controller.setName(name);
+        controller.setIncome(income);
+        controller.setAge(age);
+
+        assertEquals(name, controller.getName());
+        assertEquals(income, controller.getIncome());
+        assertEquals(age, controller.getAge());
     }
 }
