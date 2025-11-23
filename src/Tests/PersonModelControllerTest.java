@@ -47,4 +47,19 @@ public class PersonModelControllerTest {
         assertEquals(income, controller.getIncome());
         assertEquals(age, controller.getAge());
     }
+
+    @Test
+    public void testControllerSetterForWrongInput() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            controller.setName(null);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            controller.setIncome(-5012);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            controller.setAge(-45);
+        });
+    }
 }
