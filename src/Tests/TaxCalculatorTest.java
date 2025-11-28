@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import Main.controller.TaxCalculator;
+import Main.controller.PersonModelController;
 
 public class TaxCalculatorTest {
     private TaxCalculator calc;
@@ -22,6 +23,17 @@ public class TaxCalculatorTest {
     @Test
     public void testCalculateTaxes() {
         calc.calculateTaxes();
+    }
+
+    @Test
+    public void testCalculateTaxForZeroIncome() {
+        PersonModelController person = new PersonModelController();
+        person.setIncome(0);
+
+        double expectedTax = 0.0;
+        double actualTax = calc.calculateTaxes(person);
+
+        assertEquals(expectedTax, actualTax);
     }
 }
 
