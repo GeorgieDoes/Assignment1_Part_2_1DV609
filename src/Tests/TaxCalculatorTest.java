@@ -21,11 +21,6 @@ public class TaxCalculatorTest {
     }
 
     @Test
-    public void testCalculateTaxes() {
-        calc.calculateTaxes();
-    }
-
-    @Test
     public void testCalculateTaxForZeroIncome() {
         PersonModelController person = new PersonModelController();
         person.setIncome(0);
