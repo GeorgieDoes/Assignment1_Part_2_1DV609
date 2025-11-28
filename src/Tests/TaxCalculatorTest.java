@@ -30,6 +30,15 @@ public class TaxCalculatorTest {
 
         assertEquals(expectedTax, actualTax);
     }
+
+
+    @Test
+    public void testCalculateTaxForLowIncome() {
+        PersonModelController person = new PersonModelController();
+        person.setIncome(10000);
+        double expectedTax = 1000.0; // Assuming 10% tax rate for low income
+        
+        assertEquals(expectedTax, calc.calculateTaxes(person));
+    }
+  
 }
-
-
