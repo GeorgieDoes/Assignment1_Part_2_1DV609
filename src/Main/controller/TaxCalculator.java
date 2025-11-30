@@ -77,7 +77,9 @@ public class TaxCalculator {
 
     public double calculateTaxesWithAge(PersonModelController person) {
         double tax = calculateTaxes(person);
-        tax *= (1 - SENIOR_DISCOUNT);
+        if(person.getAge() >= SENIOR_AGE) {
+            tax *= (1 - SENIOR_DISCOUNT);
+        }
         return tax;
     }
 }
