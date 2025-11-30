@@ -49,6 +49,8 @@ public class TaxCalculator {
     }
 
     public double calculateTotalBurden(PersonModelController person) {
+        if (person == null)
+            throw new IllegalArgumentException("Person cannot be null");
         double tax = calculateTaxes(person);
         double pension = calculatePensionFee(person);
         return tax + pension;
