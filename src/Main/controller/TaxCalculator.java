@@ -7,6 +7,7 @@ public class TaxCalculator {
     private static final int STATE_TAX_LIMIT = 600000;
     private static final double MUNICIPAL_TAX_RATE = 0.30;
     private static final double STATE_TAX_RATE = 0.20;
+    private static final double PENSION_RATE = 0.07;
 
     public TaxCalculator() {}
 
@@ -39,5 +40,9 @@ public class TaxCalculator {
         }
         double tax = calculateTaxes(person);
         return person.getIncome() - tax;
+    }
+
+    public double calcuatePensionFee(PersonModelController person) {
+        return person.getIncome() * PENSION_RATE;
     }
 }
