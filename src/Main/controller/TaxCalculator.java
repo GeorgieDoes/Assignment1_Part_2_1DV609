@@ -10,7 +10,7 @@ public class TaxCalculator {
         if (income < 20000) {
             tax = 0.0;
         } else {
-            tax = income * 0.30;
+            tax = (income - 20000) * 0.30;
         }
 
         return tax;

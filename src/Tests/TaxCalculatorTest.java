@@ -45,7 +45,7 @@ public class TaxCalculatorTest {
     public void testCalculateTaxForMunicipalBracket() {
         PersonModelController person = new PersonModelController();
         person.setIncome(100000);
-        double expectedTax = 30000.0; // Assuming 30% municipal tax
+        double expectedTax = 24000.0; // Assuming 30% municipal tax
         
         assertEquals(expectedTax, calc.calculateTaxes(person));
     }
@@ -54,7 +54,7 @@ public class TaxCalculatorTest {
     public void testCalculateTaxForHighIncome() {
         PersonModelController person = new PersonModelController();
         person.setIncome(50000);
-        double expectedTax = 15000.0; // Assuming 30% municipal tax
+        double expectedTax = 9000.0; // Assuming 30% municipal tax
         
         assertEquals(expectedTax, calc.calculateTaxes(person));
     }
