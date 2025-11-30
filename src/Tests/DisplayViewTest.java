@@ -58,4 +58,11 @@ public class DisplayViewTest {
           displayView.getInput();
       });
   }
+
+  @Test
+  public void testInstructions() {
+    displayView.printInstructions();
+    String expectedOutput = "Please enter your name, income, and age to calculate your taxes." + System.lineSeparator();
+    assertEquals(expectedOutput, outContent.toString());
+  }
 }
