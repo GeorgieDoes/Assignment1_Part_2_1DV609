@@ -9,10 +9,12 @@ import Main.controller.PersonModelController;
 
 public class TaxCalculatorTest {
     private TaxCalculator calc;
+    private PersonModelController person;
 
     @BeforeEach
     public void setUp() {
         calc = new TaxCalculator();
+        person = new PersonModelController();
     }
 
     @Test 
@@ -22,7 +24,6 @@ public class TaxCalculatorTest {
 
     @Test
     public void testCalculateTaxForZeroIncome() {
-        PersonModelController person = new PersonModelController();
         person.setIncome(0);
 
         double expectedTax = 0.0;
@@ -34,7 +35,6 @@ public class TaxCalculatorTest {
 
     @Test
     public void testCalculateTaxForLowIncome() {
-        PersonModelController person = new PersonModelController();
         person.setIncome(10000);
         double expectedTax = 0.0; // Swedish system: below ~20k is tax free
         
@@ -43,7 +43,6 @@ public class TaxCalculatorTest {
 
     @Test
     public void testCalculateTaxForMunicipalBracket() {
-        PersonModelController person = new PersonModelController();
         person.setIncome(100000);
         double expectedTax = 24000.0; // Assuming 30% municipal tax
         
@@ -52,7 +51,6 @@ public class TaxCalculatorTest {
   
     @Test
     public void testCalculateTaxForHighIncome() {
-        PersonModelController person = new PersonModelController();
         person.setIncome(50000);
         double expectedTax = 9000.0; // Assuming 30% municipal tax
         
@@ -61,7 +59,6 @@ public class TaxCalculatorTest {
 
     @Test
     public void testCalculateTaxWithBasicDeduction() {
-        PersonModelController person = new PersonModelController();
         person.setIncome(25000);
         // Income 25,000. Basic Deduction 20,000. Taxable: 5,000.
         // Tax: 5,000 * 0.30 = 1,500.
@@ -72,7 +69,6 @@ public class TaxCalculatorTest {
 
     @Test
     public void testCalculateTaxForStateTaxBracket() {
-        PersonModelController person = new PersonModelController();
         person.setIncome(700000);
         // Municipal tax: (700,000 - 20,000) * 0.30 = 204,000
         // State tax: (700,000 - 600,000) * 0.20 = 20,000
@@ -80,6 +76,23 @@ public class TaxCalculatorTest {
         double expectedTax = 224000.0; 
         
         assertEquals(expectedTax, calc.calculateTaxes(person));
+    }
+
+    @Test
+    public void testEdgeCaseAtStartThreshold() {
+        person.setIncome(600000);
+        // Municipal: (600K - 20K) * 0.30 = 580K * 0.30 = 174,000
+        // Stat: 0
+
+        double expectedTax = 174000.0;
+        assertEquals(expectedTax, calc.calculateTaxes(person));
+    }
+
+    @Test
+    public void testNullPersonThrows() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            calc.calculateTaxes(null);
+        });
     }
 }
 
