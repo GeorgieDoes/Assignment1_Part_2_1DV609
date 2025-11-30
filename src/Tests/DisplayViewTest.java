@@ -142,4 +142,14 @@ public class DisplayViewTest {
       String name = displayView.getName();
       assertEquals("12345", name, "Should return '12345' as a valid name input");
   }
+
+  @Test
+  public void testGetIncome() {
+      String testInput = "55000" + System.lineSeparator();
+      System.setIn(new java.io.ByteArrayInputStream(testInput.getBytes()));
+      displayView = new DisplayView();
+
+      int income = displayView.getIncome();
+      assertEquals(55000, income);
+  }
 }
