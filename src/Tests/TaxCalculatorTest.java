@@ -58,4 +58,15 @@ public class TaxCalculatorTest {
         
         assertEquals(expectedTax, calc.calculateTaxes(person));
     }
+
+    @Test
+    public void testCalculateTaxWithBasicDeduction() {
+        PersonModelController person = new PersonModelController();
+        person.setIncome(25000);
+        // Income 25,000. Basic Deduction 20,000. Taxable: 5,000.
+        // Tax: 5,000 * 0.30 = 1,500.
+        double expectedTax = 1500.0; 
+        
+        assertEquals(expectedTax, calc.calculateTaxes(person));
+    }
 }
