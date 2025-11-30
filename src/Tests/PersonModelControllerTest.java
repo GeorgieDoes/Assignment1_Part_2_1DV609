@@ -73,4 +73,10 @@ public class PersonModelControllerTest {
             controller.setAge(150);
         });
     }
+
+    @Test
+    public void testAgeValidationBound() {
+        controller.setAge(130);
+        assertEquals(130, controller.getAge());
+    }
 }

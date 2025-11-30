@@ -94,6 +94,14 @@ public class TaxCalculatorTest {
             calc.calculateTaxes(null);
         });
     }
+
+    @Test
+    public void testNetIncomeCalculation() {
+        person.setIncome(100000);
+        double tax = calc.calculateTaxes(person);
+        double netIncome = calc.calculateNetIncome(person);
+        assertEquals(100000 - tax, netIncome);
+    }
 }
 
 
