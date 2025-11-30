@@ -91,5 +91,18 @@ public class DisplayViewTest {
       int age = displayView.getAge();
       assertEquals(25, age, "Should return 25 after skipping invalid inputs");
   }
-}
 
+  @Test
+  public void testGetAgeWithNonIntegerInput() {
+      // Input sequence:
+      // 1. "abc" (Non-integer, invalid)
+      // 2. "40" (Valid)
+      String input = "abc" + System.lineSeparator() + "40" + System.lineSeparator();
+      System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+      displayView = new DisplayView();
+
+      // Should skip the non-integer input and return 40
+      int age = displayView.getAge();
+      assertEquals(40, age, "Should return 40 after skipping non-integer input");
+  }
+}
