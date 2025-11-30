@@ -11,7 +11,13 @@ public class TaxCalculator {
             tax = 0.0;
         } else {
             tax = (income - 20000) * 0.30;
+            
+            if (income > 600000) {
+                tax += (income - 600000) * 0.20;
+            }
         }
+        
+
 
         return tax;
     }
