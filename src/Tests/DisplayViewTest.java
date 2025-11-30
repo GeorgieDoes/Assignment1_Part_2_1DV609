@@ -34,4 +34,17 @@ public class DisplayViewTest {
       displayView.printWelcomeMessage();
       assertEquals("Welcome to the Tax Calculator" + System.lineSeparator(), outContent.toString());
   }
+
+  @Test
+  public void testGetInput() {
+      String testInput = "Test User Input";
+      // Simulate user input by setting System.in
+      System.setIn(new java.io.ByteArrayInputStream(testInput.getBytes()));
+      
+      // Re-initialize DisplayView to pick up the new System.in
+      displayView = new DisplayView();
+      
+      String userInput = displayView.getInput();
+      assertEquals(testInput, userInput);
+  }
 }
