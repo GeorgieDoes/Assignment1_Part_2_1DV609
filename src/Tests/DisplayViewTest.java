@@ -63,4 +63,35 @@ public class DisplayViewTest {
       });
       assertTrue(latch.await(5, TimeUnit.SECONDS), "JavaFX start method timed out");
   }
+
+  @Test
+  public void testWindowOpens() throws InterruptedException {
+      CountDownLatch latch = new CountDownLatch(1);
+      // Use a container to hold any exception thrown on the JavaFX thread
+      final Throwable[] threadException = new Throwable[1];
+
+      Platform.runLater(() -> {
+          try {
+              Stage stage = new Stage();
+              displayView.start(stage);
+              assertTrue(stage.isShowing(), "Stage should be showing after start()");
+              stage.close();
+          } catch (Throwable t) {
+              threadException[0] = t;
+          } finally {
+              latch.countDown();
+          }
+      });
+      
+      assertTrue(latch.await(5, TimeUnit.SECONDS), "JavaFX test timed out");
+      
+      // If an exception occurred on the JavaFX thread, re-throw it here to fail the test
+      if (threadException[0] != null) {
+          if (threadException[0] instanceof AssertionError) {
+              throw (AssertionError) threadException[0];
+          } else {
+              throw new RuntimeException(threadException[0]);
+          }
+      }
+  }
 }

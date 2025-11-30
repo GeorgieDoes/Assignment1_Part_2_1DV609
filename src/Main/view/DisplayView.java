@@ -8,7 +8,6 @@ public class DisplayView extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Tax Calculator");
-        primaryStage.show();
     }
 
     public void printWelcomeMessage() {
