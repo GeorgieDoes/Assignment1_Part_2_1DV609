@@ -1,0 +1,10 @@
+# Ignore JavaFX SDK
+lib/javafx-sdk-23.0.1/
+
+# Ignore compiled output
+bin/
+obj/
+bin_java/
+
+# Ignore OS files
+.DS_Store
