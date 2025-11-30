@@ -13,14 +13,14 @@ public class PersonModelController {
     }
 
     public void setIncome(int income) { 
-        if (income < 0 || income > Integer.MAX_VALUE) {
+        if (income < 0) {
             throw new IllegalArgumentException("Invalid integer value for income.");
         }
         this._model.setIncome(income); 
     }
     
     public void setAge(int age) { 
-        if (age < 0 || age > Integer.MAX_VALUE) {
+        if (age < 0) {
             throw new IllegalArgumentException("Invalid integer value for age.");
         }
         this._model.setAge(age); 
