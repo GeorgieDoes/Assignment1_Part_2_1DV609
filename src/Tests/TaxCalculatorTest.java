@@ -115,6 +115,13 @@ public class TaxCalculatorTest {
         person.setIncome(100000);
         assertEquals(7000, calc.calcuatePensionFee(person), 0.001);
     }
+
+    @Test
+    public void testPensionFeeCalculationNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            calc.calcuatePensionFee(null);
+        });
+    }
 }
 
 

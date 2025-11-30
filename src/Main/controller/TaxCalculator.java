@@ -43,6 +43,8 @@ public class TaxCalculator {
     }
 
     public double calcuatePensionFee(PersonModelController person) {
+        if (person == null)
+            throw new IllegalArgumentException("Person cannot be null");
         return person.getIncome() * PENSION_RATE;
     }
 }
