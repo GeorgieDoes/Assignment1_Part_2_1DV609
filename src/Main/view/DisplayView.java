@@ -14,7 +14,7 @@ public class DisplayView {
     }
 
     public void printInstructions() {
-        System.out.println("Please enter your name, income, and age to calculate your taxes.");
+        System.out.println("Please enter your Age, Name and Income to calculate your taxes.");
     }
 
     
@@ -51,4 +51,13 @@ public class DisplayView {
         }
         return age;
     }
+
+    public String getName() {
+        System.out.print("Please enter your name: ");
+        if (scanner.hasNextLine()) {
+            return scanner.nextLine();
+        }
+        return "";
+    }
+
 }
