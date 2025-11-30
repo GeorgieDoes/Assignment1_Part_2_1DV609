@@ -37,7 +37,7 @@ public class PersonModelControllerTest {
     public void testControllerSetterAlt() {
         String name = "Oscar";
         int income = 1;
-        int age = 1987;
+        int age = 119;
 
         controller.setName(name);
         controller.setIncome(income);

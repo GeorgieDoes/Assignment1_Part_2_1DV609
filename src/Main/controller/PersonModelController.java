@@ -20,7 +20,7 @@ public class PersonModelController {
     }
     
     public void setAge(int age) { 
-        if (age < 0) {
+        if (age < 0 || age > 130) {
             throw new IllegalArgumentException("Invalid integer value for age.");
         }
         this._model.setAge(age); 
