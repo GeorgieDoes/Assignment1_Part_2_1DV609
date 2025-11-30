@@ -80,6 +80,9 @@ public class TaxCalculator {
         if(person.getAge() >= SENIOR_AGE) {
             tax *= (1 - SENIOR_DISCOUNT);
         }
+        if(person.getAge() < 18) {
+            tax = 0;
+        }
         return tax;
     }
 }
