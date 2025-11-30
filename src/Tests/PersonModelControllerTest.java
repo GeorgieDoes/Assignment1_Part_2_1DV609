@@ -66,4 +66,11 @@ public class PersonModelControllerTest {
             controller.setAge(-45);
         });
     }
+
+    @Test
+    public void testAgeValidationUpperBound() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            controller.setAge(150);
+        });
+    }
 }
