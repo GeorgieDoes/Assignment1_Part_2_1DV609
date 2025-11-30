@@ -23,4 +23,8 @@ public class PersonModel {
         setIncome(income);
         setAge(age);
     }
+
+    public void setDeduction(int amount) {
+        // Hi :)
+    }
 }

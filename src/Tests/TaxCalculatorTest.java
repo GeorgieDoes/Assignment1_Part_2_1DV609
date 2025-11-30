@@ -141,7 +141,7 @@ public class TaxCalculatorTest {
     @Test
     public void testSingleDeduction() {
         person.setIncome(50000);
-        person.addDeduction(5000);
+        person.setDeduction(5000);
         double expectedTax = (50000 - 20000) * 0.30 - (5000 * 0.30);
         assertEquals(expectedTax, calc.calculateTaxesWithDeductions(person), 0.001);
     }

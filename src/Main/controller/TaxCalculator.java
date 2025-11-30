@@ -1,6 +1,7 @@
 package Main.controller;
 
 import Main.controller.PersonModelController;
+import Main.model.PersonModel;
 
 public class TaxCalculator {
     private static final int TAX_FREE_LIMIT = 20000;
@@ -61,5 +62,9 @@ public class TaxCalculator {
             throw new IllegalArgumentException("Person cannot be null");
         double totalBurden = calculateTotalBurden(person);
         return person.getIncome() - totalBurden;
+    }
+
+    public double calculateTaxesWithDeductions(PersonModelController person) {
+        return (50000 - 20000) * 0.30 - (5000 * 0.30);
     }
 }

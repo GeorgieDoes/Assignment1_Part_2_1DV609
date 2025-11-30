@@ -26,6 +26,10 @@ public class PersonModelController {
         this._model.setAge(age); 
     }
 
+    public void setDeduction(int amount) {
+        _model.setDeduction(amount);
+    }
+
     // Getters \\
     public String getName() { return this._model.getName(); }
     public int getIncome() { return this._model.getIncome(); }
