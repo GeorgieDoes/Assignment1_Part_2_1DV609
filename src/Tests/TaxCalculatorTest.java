@@ -161,6 +161,13 @@ public class TaxCalculatorTest {
         double expected = (100000 - 20000) * 0.30 * 0.95;
         assertEquals(expected, calc.calculateTaxesWithAge(person), 0.001);   
     }
+
+    @Test
+    public void testMinorShouldBeTaxFree() {
+        person.setAge(15);
+        person.setIncome(30000);
+        assertEquals(0, calc.calculateTaxesWithAge(person), 0.001);
+    }
 }
 
 
