@@ -130,3 +130,5 @@ public class DisplayViewTest {
       String name = displayView.getName();
       assertEquals("Alice", name, "Should return 'Alice' after skipping invalid name inputs");
   }
+
+}
