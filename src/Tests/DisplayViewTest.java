@@ -65,4 +65,15 @@ public class DisplayViewTest {
     String expectedOutput = "Please enter your name, income, and age to calculate your taxes." + System.lineSeparator();
     assertEquals(expectedOutput, outContent.toString());
   }
+
+  @Test
+  public void testGetAge() {
+      String testInput = "30";
+      System.setIn(new java.io.ByteArrayInputStream(testInput.getBytes()));
+      displayView = new DisplayView();
+      
+      int age = displayView.getAge();
+      assertEquals(30, age);
+  }
 }
+

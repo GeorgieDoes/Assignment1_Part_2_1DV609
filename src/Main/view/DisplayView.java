@@ -28,4 +28,4 @@ public class DisplayView {
     public void close() {
         scanner.close();
     }
-}
+}    
