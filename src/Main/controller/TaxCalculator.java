@@ -6,6 +6,8 @@ public class TaxCalculator {
     private static final double MUNICIPAL_TAX_RATE = 0.30;
     private static final double STATE_TAX_RATE = 0.20;
     private static final double PENSION_RATE = 0.07;
+    private static final int SENIOR_AGE = 65;
+    private static final double SENIOR_DISCOUNT = 0.05;
 
     public TaxCalculator() {}
 
