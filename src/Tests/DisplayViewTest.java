@@ -77,7 +77,7 @@ public class DisplayViewTest {
   }
 
   @Test
-  public void testGetAgeWithInvalidAndEdgeInputs() {
+  public void testGetAgeWithInvalidAndEdgeInputsMOCK() {
       // Input sequence: 
       // 1. "0.5" (Invalid integer)
       // 2. "-5" (Negative, invalid)
@@ -93,7 +93,7 @@ public class DisplayViewTest {
   }
 
   @Test
-  public void testGetAgeWithNonIntegerInput() {
+  public void testGetAgeWithNonIntegerInputMOCK() {
       // Input sequence:
       // 1. "abc" (Non-integer, invalid)
       // 2. "40" (Valid)
@@ -115,4 +115,18 @@ public class DisplayViewTest {
       String name = displayView.getName();
       assertEquals("John Doe", name);
   }
-}
+
+  @Test
+  public void testGetNameWithDifferentInvalidMOCK() {
+      // Input sequence:
+      // 1. "" (Empty string, invalid)
+      // 2. "   " (Whitespace only, invalid)
+      // 3. "Alice" (Valid)
+      // 4. Number input "123" (invalid for name, but our method will accept it as a string)
+      String input = "" + System.lineSeparator() + "   " + System.lineSeparator() + "Alice" + System.lineSeparator();
+      System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+      displayView = new DisplayView();
+
+      String name = displayView.getName();
+      assertEquals("Alice", name, "Should return 'Alice' after skipping invalid name inputs");
+  }
