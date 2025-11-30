@@ -9,6 +9,10 @@ public class TaxCalculator {
     private static final double STATE_TAX_RATE = 0.20;
 
     public double calculateTaxes(PersonModelController person) {
+        if (person == null) {
+            throw new IllegalArgumentException("PersonModelController does not exist.");
+        }
+
         int income = person.getIncome();
         double tax = 0.0;
 
