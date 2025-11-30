@@ -36,9 +36,26 @@ public class TaxCalculatorTest {
     public void testCalculateTaxForLowIncome() {
         PersonModelController person = new PersonModelController();
         person.setIncome(10000);
-        double expectedTax = 1000.0; // Assuming 10% tax rate for low income
+        double expectedTax = 0.0; // Swedish system: below ~20k is tax free
+        
+        assertEquals(expectedTax, calc.calculateTaxes(person));
+    }
+
+    @Test
+    public void testCalculateTaxForMunicipalBracket() {
+        PersonModelController person = new PersonModelController();
+        person.setIncome(100000);
+        double expectedTax = 30000.0; // Assuming 30% municipal tax
         
         assertEquals(expectedTax, calc.calculateTaxes(person));
     }
   
+    @Test
+    public void testCalculateTaxForHighIncome() {
+        PersonModelController person = new PersonModelController();
+        person.setIncome(50000);
+        double expectedTax = 15000.0; // Assuming 30% municipal tax
+        
+        assertEquals(expectedTax, calc.calculateTaxes(person));
+    }
 }
