@@ -109,6 +109,12 @@ public class TaxCalculatorTest {
             calc.calculateNetIncome(null);
         });
     }
+
+    @Test
+    public void testPensionFeeCalculation() {
+        person.setIncome(100000);
+        assertEquals(7000, calc.calcuatePensionFee(person), 0.001);
+    }
 }
 
 
