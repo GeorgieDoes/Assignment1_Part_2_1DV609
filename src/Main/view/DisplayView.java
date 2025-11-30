@@ -16,7 +16,13 @@ public class DisplayView {
 
     
     public String getInput() {
-        return scanner.nextLine();
+        if (scanner.hasNextLine()) {
+            return scanner.nextLine();
+        }
+        return "";
     }
 
+    public void close() {
+        scanner.close();
+    }
 }

@@ -28,3 +28,9 @@ We use a simplified version of the Swedish tax system. Here are the rules:
 
 - `src/Main`: Contains the main code (Model and Controller and View).
 - `src/Tests`: Contains the automated tests.
+
+
+## Students
+
+* gk222jw
+* kj223ag
