@@ -8,6 +8,8 @@ public class TaxCalculator {
     private static final double MUNICIPAL_TAX_RATE = 0.30;
     private static final double STATE_TAX_RATE = 0.20;
 
+    public TaxCalculator() {}
+
     public double calculateTaxes(PersonModelController person) {
         if (person == null) {
             throw new IllegalArgumentException("PersonModelController does not exist.");
@@ -32,6 +34,9 @@ public class TaxCalculator {
     }
 
     public double calculateNetIncome(PersonModelController person) {
+        if (person == null) {
+            throw new IllegalArgumentException("Person cannot be null");
+        }
         double tax = calculateTaxes(person);
         return person.getIncome() - tax;
     }

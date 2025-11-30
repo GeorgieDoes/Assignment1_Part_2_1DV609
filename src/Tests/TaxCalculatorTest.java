@@ -102,6 +102,13 @@ public class TaxCalculatorTest {
         double netIncome = calc.calculateNetIncome(person);
         assertEquals(100000 - tax, netIncome);
     }
+
+    @Test
+    public void testNetIncomeCalculationNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            calc.calculateNetIncome(null);
+        });
+    }
 }
 
 
