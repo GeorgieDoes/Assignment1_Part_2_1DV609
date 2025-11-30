@@ -27,13 +27,17 @@ public class PersonModelController {
     }
 
     public void setDeduction(int amount) {
-        _model.setDeduction(amount);
+        if (amount < 0) {
+            throw new IllegalArgumentException("Invalid integer value for age.");
+        }
+        this._model.setDeduction(amount);
     }
 
     // Getters \\
     public String getName() { return this._model.getName(); }
     public int getIncome() { return this._model.getIncome(); }
     public int getAge() { return this._model.getAge(); }
+    public int getTotalDeduction() { return this._model.getTotalDeduction(); }
 
     // Constructor \\
     public PersonModelController() {

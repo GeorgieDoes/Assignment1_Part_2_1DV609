@@ -1,8 +1,5 @@
 package Main.controller;
 
-import Main.controller.PersonModelController;
-import Main.model.PersonModel;
-
 public class TaxCalculator {
     private static final int TAX_FREE_LIMIT = 20000;
     private static final int STATE_TAX_LIMIT = 600000;
@@ -65,6 +62,12 @@ public class TaxCalculator {
     }
 
     public double calculateTaxesWithDeductions(PersonModelController person) {
-        return (50000 - 20000) * 0.30 - (5000 * 0.30);
+        if (person == null)
+            throw new IllegalArgumentException("Person cannot be null");
+
+        double tax = calculateTaxes(person);
+        int totalDeductions = person.getTotalDeduction();
+        double deductionEffect = totalDeductions * MUNICIPAL_TAX_RATE;
+        return Math.max(0, tax - deductionEffect);
     }
 }
