@@ -131,4 +131,15 @@ public class DisplayViewTest {
       assertEquals("Alice", name, "Should return 'Alice' after skipping invalid name inputs");
   }
 
+  @Test
+  public void testGetNameWithNumericInputMOCK() {
+      // Input sequence:
+      // 1. "12345" (Numeric input, but valid as a string)
+      String input = "12345" + System.lineSeparator();
+      System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+      displayView = new DisplayView();
+
+      String name = displayView.getName();
+      assertEquals("12345", name, "Should return '12345' as a valid name input");
+  }
 }
