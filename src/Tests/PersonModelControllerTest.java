@@ -55,6 +55,10 @@ public class PersonModelControllerTest {
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
+            controller.setName("");
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
             controller.setIncome(-5012);
         });
 
