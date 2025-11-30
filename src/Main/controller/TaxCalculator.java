@@ -55,4 +55,9 @@ public class TaxCalculator {
         double pension = calculatePensionFee(person);
         return tax + pension;
     }
+
+    public double calculateNetIncomeAfterPension(PersonModelController person) {
+        double totalBurden = calculateTotalBurden(person);
+        return person.getIncome() - totalBurden;
+    }
 }
