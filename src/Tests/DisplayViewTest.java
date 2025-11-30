@@ -34,4 +34,15 @@ public class DisplayViewTest {
       displayView.printWelcomeMessage();
       assertEquals("Welcome to the Tax Calculator" + System.lineSeparator(), outContent.toString());
   }
+
+  @Test
+  public void testStartMethodJavafx() {
+      // Since JavaFX Application start method requires a JavaFX thread,
+      // we will just ensure that calling start does not throw an exception.
+      try {
+          displayView.start(new javafx.stage.Stage());
+      } catch (Exception e) {
+          fail("start method threw an exception: " + e.getMessage());
+      }
+  }
 }

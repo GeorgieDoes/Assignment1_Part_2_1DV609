@@ -14,4 +14,5 @@ public class DisplayView extends Application {
     public void printWelcomeMessage() {
         System.out.println("Welcome to the Tax Calculator");
     }
+
 }
