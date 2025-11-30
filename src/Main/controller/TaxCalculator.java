@@ -1,5 +1,7 @@
 package Main.controller;
 
+import Main.model.PersonModel;
+
 public class TaxCalculator {
     private static final int TAX_FREE_LIMIT = 20000;
     private static final int STATE_TAX_LIMIT = 600000;
@@ -71,5 +73,11 @@ public class TaxCalculator {
         int totalDeductions = person.getTotalDeduction();
         double deductionEffect = totalDeductions * MUNICIPAL_TAX_RATE;
         return Math.max(0, tax - deductionEffect);
+    }
+
+    public double calculateTaxesWithAge(PersonModelController person) {
+        double tax = calculateTaxes(person);
+        tax *= (1 - SENIOR_DISCOUNT);
+        return tax;
     }
 }
