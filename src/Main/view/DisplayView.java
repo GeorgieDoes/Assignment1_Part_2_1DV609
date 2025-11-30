@@ -13,6 +13,9 @@ public class DisplayView {
         System.out.println("Welcome to the Tax Calculator");
     }
 
+    public void printInstructions() {
+        System.out.println("Please enter your name, income, and age to calculate your taxes.");
+    }
 
     
     public String getInput() {
