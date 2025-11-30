@@ -57,6 +57,8 @@ public class TaxCalculator {
     }
 
     public double calculateNetIncomeAfterPension(PersonModelController person) {
+        if (person == null)
+            throw new IllegalArgumentException("Person cannot be null");
         double totalBurden = calculateTotalBurden(person);
         return person.getIncome() - totalBurden;
     }
