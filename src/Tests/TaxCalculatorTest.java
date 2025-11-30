@@ -69,4 +69,18 @@ public class TaxCalculatorTest {
         
         assertEquals(expectedTax, calc.calculateTaxes(person));
     }
+
+    @Test
+    public void testCalculateTaxForStateTaxBracket() {
+        PersonModelController person = new PersonModelController();
+        person.setIncome(700000);
+        // Municipal tax: (700,000 - 20,000) * 0.30 = 204,000
+        // State tax: (700,000 - 600,000) * 0.20 = 20,000
+        // Total: 224,000
+        double expectedTax = 224000.0; 
+        
+        assertEquals(expectedTax, calc.calculateTaxes(person));
+    }
 }
+
+
