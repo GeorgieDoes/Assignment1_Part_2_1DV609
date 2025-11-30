@@ -53,11 +53,19 @@ public class DisplayView {
     }
 
     public String getName() {
+      String name = "";
+      while (name.trim().isEmpty()) {
         System.out.print("Please enter your name: ");
         if (scanner.hasNextLine()) {
-            return scanner.nextLine();
+          name = scanner.nextLine();
+          if (name.trim().isEmpty()) {
+            System.out.println("Name cannot be empty or just whitespace. Please try again.");
+          }
+        } else {
+          break;
         }
-        return "";
+      }
+      return name;
     }
 
 }
