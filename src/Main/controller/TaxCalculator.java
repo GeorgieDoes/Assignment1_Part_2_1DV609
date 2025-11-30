@@ -1,8 +1,9 @@
 package Main.controller;
 
-import Main.model.PersonModel;
-
 public class TaxCalculator {
+    // === === === === === === === ===
+    // CONSTANTS
+    // === === === === === === === ===
     private static final int TAX_FREE_LIMIT = 20000;
     private static final int STATE_TAX_LIMIT = 600000;
     private static final double MUNICIPAL_TAX_RATE = 0.30;
@@ -13,69 +14,100 @@ public class TaxCalculator {
 
     public TaxCalculator() {}
 
+    // === === === === === === === ===
+    // Core calculations
+    // === === === === === === === ===
+
+    /**
+     * Calculate municipal and state tax before any deduction or age multipliers.
+     *
+     * @param person    <-- represents the preson we're taxing.
+     * @return          <-- tax.
+     */
     public double calculateTaxes(PersonModelController person) {
-        if (person == null) {
-            throw new IllegalArgumentException("PersonModelController does not exist.");
-        }
-
+        validatePerson(person);
         int income = person.getIncome();
-        double tax = 0.0;
 
-        if (income < TAX_FREE_LIMIT) {
+        if (income <= TAX_FREE_LIMIT)
             return 0.0;
-        }
 
-        // Municipal Tax
-        tax = (income - TAX_FREE_LIMIT) * MUNICIPAL_TAX_RATE;
-        
-        // State Tax
-        if (income > STATE_TAX_LIMIT) {
-            tax += (income - STATE_TAX_LIMIT) * STATE_TAX_RATE;
-        }
+        double municipalTax = (income - TAX_FREE_LIMIT) * MUNICIPAL_TAX_RATE;
+        double stateTax = income > STATE_TAX_LIMIT ? (income - STATE_TAX_LIMIT) * STATE_TAX_RATE : 0.0;
 
-        return tax;
+        return municipalTax + stateTax;
     }
 
-    public double calculateNetIncome(PersonModelController person) {
-        if (person == null) {
-            throw new IllegalArgumentException("Person cannot be null");
-        }
-        double tax = calculateTaxes(person);
-        return person.getIncome() - tax;
-    }
-
+    /**
+     * Pension fee based on income.
+     *
+     * @param person    <-- represents the preson we're taxing.
+     * @return          <-- tax modifier.
+     */
     public double calculatePensionFee(PersonModelController person) {
-        if (person == null)
-            throw new IllegalArgumentException("Person cannot be null");
+        validatePerson(person);
         return person.getIncome() * PENSION_RATE;
     }
 
+    /**
+     * Calculate total burden aka taxes + pension.
+     *
+     * @param person    <-- represents the preson we're taxing.
+     * @return          <-- burden.
+     */
     public double calculateTotalBurden(PersonModelController person) {
-        if (person == null)
-            throw new IllegalArgumentException("Person cannot be null");
-        double tax = calculateTaxes(person);
-        double pension = calculatePensionFee(person);
-        return tax + pension;
+        validatePerson(person);
+        return calculateTaxes(person) + calculatePensionFee(person);
     }
 
+    // === === === === === === === ===
+    // Net income calculations
+    // === === === === === === === ===
+
+    /**
+     * Net income after taxes.
+     *
+     * @param person    <-- represents the preson we're taxing.
+     * @return          <-- net income.
+     */
+    public double calculateNetIncome(PersonModelController person) {
+        validatePerson(person);
+        return person.getIncome() - calculateTaxes(person);
+    }
+
+    /**
+     * Net income after taxes and pension
+     * @param person    <-- represents the preson we're taxing.
+     * @return          <-- net income.
+     */
     public double calculateNetIncomeAfterPension(PersonModelController person) {
-        if (person == null)
-            throw new IllegalArgumentException("Person cannot be null");
-        double totalBurden = calculateTotalBurden(person);
-        return person.getIncome() - totalBurden;
+        validatePerson(person);
+        return person.getIncome() - calculateTotalBurden(person);
     }
 
-    public double calculateTaxesWithDeductions(PersonModelController person) {
-        if (person == null)
-            throw new IllegalArgumentException("Person cannot be null");
+    // === === === === === === === ===
+    // Deduced income calculations
+    // === === === === === === === ===
 
+    /**
+     * Taxes reduced by deductions (charity donations and such).
+     *
+     * @param person    <-- represents the preson we're taxing.
+     * @return          <-- Total taxes after deductions.
+     */
+    public double calculateTaxesWithDeductions(PersonModelController person) {
+        validatePerson(person);
         double tax = calculateTaxes(person);
-        int totalDeductions = person.getTotalDeduction();
-        double deductionEffect = totalDeductions * MUNICIPAL_TAX_RATE;
+        double deductionEffect = person.getTotalDeduction() * MUNICIPAL_TAX_RATE;
         return Math.max(0, tax - deductionEffect);
     }
 
+    /**
+     * Tax adjusted by age.
+     * @param person    <-- represents the preson we're taxing.
+     * @return          <-- tax with deduction.
+     */
     public double calculateTaxesWithAge(PersonModelController person) {
+        validatePerson(person);
         double tax = calculateTaxes(person);
         if(person.getAge() >= SENIOR_AGE) {
             tax *= (1 - SENIOR_DISCOUNT);
@@ -84,5 +116,19 @@ public class TaxCalculator {
             tax = 0;
         }
         return tax;
+    }
+
+    // === === === === === === === ===
+    // Helpers
+    // === === === === === === === ===
+
+    /**
+     * Simple reusable null check for public methods.
+     * @param person    <-- represents the preson we're taxing.
+     */
+    private void validatePerson(PersonModelController person) {
+        if (person == null) {
+            throw new IllegalArgumentException("Person cannot be null.");
+        }
     }
 }
