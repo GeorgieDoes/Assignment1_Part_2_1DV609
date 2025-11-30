@@ -1,18 +1,19 @@
 package Main.view;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+import java.util.Scanner;
 
-public class DisplayView extends Application {
-    
-    @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Tax Calculator");
-        primaryStage.show();
+public class DisplayView {
+    private Scanner scanner;
+
+    public DisplayView() {
+        this.scanner = new Scanner(System.in);
     }
 
     public void printWelcomeMessage() {
         System.out.println("Welcome to the Tax Calculator");
     }
-
+    
+    public String getInput() {
+        return scanner.nextLine();
+    }
 }
