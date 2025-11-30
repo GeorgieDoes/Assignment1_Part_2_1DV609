@@ -30,18 +30,23 @@ public class DisplayView {
     }
 
     public int getAge() {
-        scanner = new Scanner(System.in);
         int age = -1;
-        while (age < 0) {
+        while (age <= 0) {
             System.out.print("Please enter your age: ");
             if (scanner.hasNextInt()) {
                 age = scanner.nextInt();
-                if (age < 0) {
-                    System.out.println("Age cannot be negative. Please try again.");
+                scanner.nextLine(); // consume newline
+                if (age <= 0) {
+                    System.out.println("Age cannot be negative or zero. Please try again.");
                 }
             } else {
                 System.out.println("Invalid input. Please enter a valid age.");
-                scanner.next(); // consume the invalid input
+                if (scanner.hasNext()) {
+                    scanner.next(); // consume the invalid input
+                    scanner.nextLine(); // consume newline
+                } else {
+                    break;
+                }
             }
         }
         return age;
