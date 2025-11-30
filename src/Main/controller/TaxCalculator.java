@@ -30,4 +30,9 @@ public class TaxCalculator {
 
         return tax;
     }
+
+    public double calculateNetIncome(PersonModelController person) {
+        double tax = calculateTaxes(person);
+        return person.getIncome() - tax;
+    }
 }
