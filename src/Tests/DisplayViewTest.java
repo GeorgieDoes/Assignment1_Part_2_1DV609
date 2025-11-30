@@ -47,4 +47,15 @@ public class DisplayViewTest {
       String userInput = displayView.getInput();
       assertEquals(testInput, userInput);
   }
+
+  @Test
+  public void closeGetInput() 
+  {
+      // Just ensure no exceptions are thrown when calling getInput
+      System.setIn(new java.io.ByteArrayInputStream("".getBytes()));
+      displayView = new DisplayView();
+      assertDoesNotThrow(() -> {
+          displayView.getInput();
+      });
+  }
 }
