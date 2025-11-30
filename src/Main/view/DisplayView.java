@@ -68,4 +68,16 @@ public class DisplayView {
       return name;
     }
 
+    public int getIncome() {
+        int income = -1;
+        while (income <= 0) {
+            System.out.print("Please enter your income: ");
+            if (scanner.hasNextInt()) {
+                income = scanner.nextInt();
+                scanner.nextLine(); // consume newline
+        
+        }
+        }
+        return income;
+    }
 }
