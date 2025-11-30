@@ -3,15 +3,29 @@ package Tests;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import javafx.application.Platform;
+import javafx.stage.Stage;
 import Main.view.DisplayView;
 
 public class DisplayViewTest {
   private DisplayView displayView;
   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
   private final PrintStream originalOut = System.out;
+
+  @BeforeAll
+  public static void initJfx() {
+      try {
+          Platform.startup(() -> {});
+      } catch (IllegalStateException e) {
+          // Toolkit already initialized
+      }
+  }
 
   @BeforeEach
   public void setUp() {
@@ -36,13 +50,17 @@ public class DisplayViewTest {
   }
 
   @Test
-  public void testStartMethodJavafx() {
-      // Since JavaFX Application start method requires a JavaFX thread,
-      // we will just ensure that calling start does not throw an exception.
-      try {
-          displayView.start(new javafx.stage.Stage());
-      } catch (Exception e) {
-          fail("start method threw an exception: " + e.getMessage());
-      }
+  public void testStartMethodJavafx() throws InterruptedException {
+      CountDownLatch latch = new CountDownLatch(1);
+      Platform.runLater(() -> {
+          try {
+              displayView.start(new Stage());
+          } catch (Exception e) {
+              fail("start method threw an exception: " + e.getMessage());
+          } finally {
+              latch.countDown();
+          }
+      });
+      assertTrue(latch.await(5, TimeUnit.SECONDS), "JavaFX start method timed out");
   }
 }
