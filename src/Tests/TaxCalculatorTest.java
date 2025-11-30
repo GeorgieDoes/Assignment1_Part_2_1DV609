@@ -130,6 +130,13 @@ public class TaxCalculatorTest {
         double expected = calc.calculateTaxes(person) + calc.calculatePensionFee(person);
         assertEquals(expected, total, 0.001);
     }
+
+    @Test
+    public void testNetIncomeAfterPension() {
+        person.setIncome(100000);
+        double net = calc.calculateNetIncomeAfterPension(person);
+        assertEquals(100000 - calc.calculateTotalBurden(person), net, 0.001);
+    }
 }
 
 
