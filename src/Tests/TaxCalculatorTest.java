@@ -122,6 +122,14 @@ public class TaxCalculatorTest {
             calc.calcuatePensionFee(null);
         });
     }
+
+    @Test
+    public void testTotalBurdenIncludesPension() {
+        person.setIncome(100000);
+        double total = calc.calulateTotalBurden(person);
+        double expected = calc.calculateTaxes(person) + calc.calculatePensionFee(person);
+        assertEquals(expected, total, 0.001);
+    }
 }
 
 
