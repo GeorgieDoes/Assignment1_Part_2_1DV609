@@ -105,4 +105,14 @@ public class DisplayViewTest {
       int age = displayView.getAge();
       assertEquals(40, age, "Should return 40 after skipping non-integer input");
   }
+
+  @Test
+  public void testGetName() {
+      String testInput = "John Doe" + System.lineSeparator();
+      System.setIn(new java.io.ByteArrayInputStream(testInput.getBytes()));
+      displayView = new DisplayView();
+
+      String name = displayView.getName();
+      assertEquals("John Doe", name);
+  }
 }
