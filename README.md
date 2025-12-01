@@ -21,7 +21,7 @@ We use a simplified version of the Swedish tax system. Here are the rules:
 ## Technologies Used
 
 - **Language:** Java
-- **Testing:** JUnit 5 (for checking that the code works correctly)
+- **Testing:** JUnit 5 (for checking that the code works correctly), Mockito.
 - **Code Coverage:** JaCoCo (to see how much of the code is tested)
 
 ## Project Structure
