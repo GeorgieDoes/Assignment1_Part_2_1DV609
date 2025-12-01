@@ -75,8 +75,20 @@ public class DisplayView {
             if (scanner.hasNextInt()) {
                 income = scanner.nextInt();
                 scanner.nextLine(); // consume newline
-        
-        }
+                if (income < 0) {
+                    System.out.println("Income cannot be negative. Please try again.");
+                } else if (income == 0) {
+                    System.out.println("Income cannot be zero. Please try again.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a valid income.");
+                if (scanner.hasNext()) {
+                    scanner.next(); // consume invalid token
+                    scanner.nextLine(); // consume newline
+                } else {
+                    break;
+                }
+            }
         }
         return income;
     }
