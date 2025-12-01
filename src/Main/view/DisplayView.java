@@ -92,4 +92,9 @@ public class DisplayView {
         }
         return income;
     }
+
+    public void printResults(double tax) {
+        System.out.println("Your calculated tax is: " + tax);
+    }
+
 }
