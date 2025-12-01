@@ -62,7 +62,7 @@ public class DisplayViewTest {
   @Test
   public void testInstructions() {
     displayView.printInstructions();
-    String expectedOutput = "Please enter your name, income, and age to calculate your taxes." + System.lineSeparator();
+    String expectedOutput = "Please enter your Age, Name and Income to calculate your taxes." + System.lineSeparator();
     assertEquals(expectedOutput, outContent.toString());
   }
 
@@ -151,5 +151,22 @@ public class DisplayViewTest {
 
       int income = displayView.getIncome();
       assertEquals(55000, income);
+  }
+
+  
+  
+  @Test
+  public void testGetIncomeWithInvalidAndEdgeInputsMOCK() {
+      // Input sequence:
+      // 1. "abc" (Non-integer, invalid)
+      // 2. "-1000" (Negative, invalid)
+      // 3. "0" (Zero, invalid)
+      // 4. "45000" (Valid)
+      String input = "abc" + System.lineSeparator() + "-1000" + System.lineSeparator() + "0" + System.lineSeparator() + "45000" + System.lineSeparator();
+      System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+      displayView = new DisplayView();
+
+      int income = displayView.getIncome();
+      assertEquals(45000, income, "Should return 45000 after skipping invalid income inputs");
   }
 }
