@@ -169,4 +169,13 @@ public class DisplayViewTest {
       int income = displayView.getIncome();
       assertEquals(45000, income, "Should return 45000 after skipping invalid income inputs");
   }
+
+
+  @Test
+  public void testGetResults() {
+      double tax = 15000.0;
+      displayView.printResults(tax);
+      String expectedOutput = "Your calculated tax is: 15000.0" + System.lineSeparator();
+      assertEquals(expectedOutput, outContent.toString());
+  }
 }
