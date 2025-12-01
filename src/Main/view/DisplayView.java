@@ -88,7 +88,7 @@ public class DisplayView {
                 } else {
                     break;
                 }
-            }
+            } 
         }
         return income;
     }
