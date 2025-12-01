@@ -6,7 +6,11 @@ public class DisplayView {
     private Scanner scanner;
 
     public DisplayView() {
-        this.scanner = new Scanner(System.in);
+        this(new Scanner(System.in));
+    }
+
+    public DisplayView(Scanner scanner) {
+        this.scanner = scanner;
     }
 
     public void printWelcomeMessage() {
