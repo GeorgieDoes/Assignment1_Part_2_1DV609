@@ -1,12 +1,11 @@
 package Tests;
 
 import Main.view.DisplayView;
+import Main.view.InputProvider;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -15,57 +14,57 @@ import static org.mockito.Mockito.*;
 public class DisplayViewMockitoTest {
 
     @Mock
-    private Scanner scanner;
+    private InputProvider inputProvider;
 
     @Test
     public void testGetName() {
         // Setup
-        when(scanner.hasNextLine()).thenReturn(true);
-        when(scanner.nextLine()).thenReturn("Mockito User");
+        when(inputProvider.hasNextLine()).thenReturn(true);
+        when(inputProvider.nextLine()).thenReturn("Mockito User");
 
-        DisplayView view = new DisplayView(scanner);
+        DisplayView view = new DisplayView(inputProvider);
         
         // Execute
         String name = view.getName();
 
         // Verify
         assertEquals("Mockito User", name);
-        verify(scanner, times(1)).nextLine();
+        verify(inputProvider, times(1)).nextLine();
     }
 
     @Test
     public void testGetAge() {
         // Setup
-        when(scanner.hasNextInt()).thenReturn(true);
-        when(scanner.nextInt()).thenReturn(30);
+        when(inputProvider.hasNextInt()).thenReturn(true);
+        when(inputProvider.nextInt()).thenReturn(30);
         // Note: getAge calls nextLine() after nextInt() to consume newline
         
-        DisplayView view = new DisplayView(scanner);
+        DisplayView view = new DisplayView(inputProvider);
 
         // Execute
         int age = view.getAge();
 
         // Verify
         assertEquals(30, age);
-        verify(scanner, times(1)).nextInt();
-        verify(scanner, times(1)).nextLine();
+        verify(inputProvider, times(1)).nextInt();
+        verify(inputProvider, times(1)).nextLine();
     }
 
     @Test
     public void testGetIncome() {
         // Setup
-        when(scanner.hasNextInt()).thenReturn(true);
-        when(scanner.nextInt()).thenReturn(50000);
+        when(inputProvider.hasNextInt()).thenReturn(true);
+        when(inputProvider.nextInt()).thenReturn(50000);
         
-        DisplayView view = new DisplayView(scanner);
+        DisplayView view = new DisplayView(inputProvider);
 
         // Execute
         int income = view.getIncome();
 
         // Verify
         assertEquals(50000, income);
-        verify(scanner, times(1)).nextInt();
-        verify(scanner, times(1)).nextLine();
+        verify(inputProvider, times(1)).nextInt();
+        verify(inputProvider, times(1)).nextLine();
     }
     
     @Test
@@ -79,17 +78,17 @@ public class DisplayViewMockitoTest {
         // 6. nextInt() -> 25
         // 7. nextLine() -> "" (consume newline after 25)
 
-        when(scanner.hasNextInt()).thenReturn(false, true);
-        when(scanner.hasNext()).thenReturn(true);
-        when(scanner.next()).thenReturn("abc");
-        when(scanner.nextInt()).thenReturn(25);
+        when(inputProvider.hasNextInt()).thenReturn(false, true);
+        when(inputProvider.hasNext()).thenReturn(true);
+        when(inputProvider.next()).thenReturn("abc");
+        when(inputProvider.nextInt()).thenReturn(25);
 
-        DisplayView view = new DisplayView(scanner);
+        DisplayView view = new DisplayView(inputProvider);
 
         int age = view.getAge();
 
         assertEquals(25, age);
-        verify(scanner, times(1)).next(); // consumed "abc"
-        verify(scanner, times(1)).nextInt(); // consumed 25
+        verify(inputProvider, times(1)).next(); // consumed "abc"
+        verify(inputProvider, times(1)).nextInt(); // consumed 25
     }
 }

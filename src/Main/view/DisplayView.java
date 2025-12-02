@@ -3,14 +3,19 @@ package Main.view;
 import java.util.Scanner;
 
 public class DisplayView {
-    private Scanner scanner;
+    private InputProvider inputProvider;
 
     public DisplayView() {
-        this(new Scanner(System.in));
+        this(new ScannerWrapper(new Scanner(System.in)));
     }
 
+    public DisplayView(InputProvider inputProvider) {
+        this.inputProvider = inputProvider;
+    }
+
+    // Constructor for backward compatibility with tests that pass Scanner
     public DisplayView(Scanner scanner) {
-        this.scanner = scanner;
+        this(new ScannerWrapper(scanner));
     }
 
     public void printWelcomeMessage() {
@@ -23,31 +28,31 @@ public class DisplayView {
 
     
     public String getInput() {
-        if (scanner.hasNextLine()) {
-            return scanner.nextLine();
+        if (inputProvider.hasNextLine()) {
+            return inputProvider.nextLine();
         }
         return "";
     }
 
     public void close() {
-        scanner.close();
+        inputProvider.close();
     }
 
     public int getAge() {
         int age = -1;
         while (age <= 0) {
             System.out.print("Please enter your age: ");
-            if (scanner.hasNextInt()) {
-                age = scanner.nextInt();
-                scanner.nextLine(); // consume newline
+            if (inputProvider.hasNextInt()) {
+                age = inputProvider.nextInt();
+                inputProvider.nextLine(); // consume newline
                 if (age <= 0) {
                     System.out.println("Age cannot be negative or zero. Please try again.");
                 }
             } else {
                 System.out.println("Invalid input. Please enter a valid age.");
-                if (scanner.hasNext()) {
-                    scanner.next(); // consume the invalid input
-                    scanner.nextLine(); // consume newline
+                if (inputProvider.hasNext()) {
+                    inputProvider.next(); // consume the invalid input
+                    inputProvider.nextLine(); // consume newline
                 } else {
                     break;
                 }
@@ -60,8 +65,8 @@ public class DisplayView {
       String name = "";
       while (name.trim().isEmpty()) {
         System.out.print("Please enter your name: ");
-        if (scanner.hasNextLine()) {
-          name = scanner.nextLine();
+        if (inputProvider.hasNextLine()) {
+          name = inputProvider.nextLine();
           if (name.trim().isEmpty()) {
             System.out.println("Name cannot be empty or just whitespace. Please try again.");
           }
@@ -76,9 +81,9 @@ public class DisplayView {
         int income = -1;
         while (income <= 0) {
             System.out.print("Please enter your income: ");
-            if (scanner.hasNextInt()) {
-                income = scanner.nextInt();
-                scanner.nextLine(); // consume newline
+            if (inputProvider.hasNextInt()) {
+                income = inputProvider.nextInt();
+                inputProvider.nextLine(); // consume newline
                 if (income < 0) {
                     System.out.println("Income cannot be negative. Please try again.");
                 } else if (income == 0) {
@@ -86,9 +91,9 @@ public class DisplayView {
                 }
             } else {
                 System.out.println("Invalid input. Please enter a valid income.");
-                if (scanner.hasNext()) {
-                    scanner.next(); // consume invalid token
-                    scanner.nextLine(); // consume newline
+                if (inputProvider.hasNext()) {
+                    inputProvider.next(); // consume invalid token
+                    inputProvider.nextLine(); // consume newline
                 } else {
                     break;
                 }
